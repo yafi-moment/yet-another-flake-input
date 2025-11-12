@@ -29,9 +29,9 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: DeterminateSystems/nix-installer-action@v20
-      - uses: yaxitech/nix-install-pkgs-action@v7
         with:
-          packages: "nixpkgs#omnix"
+          source-url: https://install.lix.systems/lix/lix-installer-x86_64-linux
+          diagnostic-endpoint: ""
       - run: |
           set -euxo pipefail
-          om ci run --include-all-dependencies -- --show-trace
+          nix run nixpkgs#om -- ci run --include-all-dependencies -- --show-trace
