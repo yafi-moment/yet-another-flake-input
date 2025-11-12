@@ -24,7 +24,6 @@
     in
       overlay;
   in {
-    inherit (import ./flake.nix) nixConfig;
     packages = forAllSystems pkgsFor;
 
     overlays.default = import ./overlay.nix;
