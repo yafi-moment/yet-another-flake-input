@@ -34,4 +34,4 @@ jobs:
           diagnostic-endpoint: ""
       - run: |
           set -euxo pipefail
-          nix run nixpkgs#om -- ci run --include-all-dependencies -- --show-trace
+          nix run nixpkgs#omnix -- ci run --include-all-dependencies -- --show-trace
