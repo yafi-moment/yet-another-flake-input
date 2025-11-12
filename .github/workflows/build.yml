@@ -32,6 +32,12 @@ jobs:
         with:
           source-url: https://install.lix.systems/lix/lix-installer-x86_64-linux
           diagnostic-endpoint: ""
+          extra-conf: |
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+            substituters = https://cache.nixos.org/
+      - uses: yaxitech/nix-install-pkgs-action@v7
+        with:
+          packages: "nixpkgs#omnix"
       - run: |
           set -euxo pipefail
-          nix run nixpkgs#omnix -- ci run --include-all-dependencies -- --show-trace
+          om ci run -- --show-trace
