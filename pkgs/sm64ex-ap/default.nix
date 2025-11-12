@@ -25,13 +25,13 @@
 in
   gcc15Stdenv.mkDerivation (finalAttrs: {
     pname = "sm64ex-ap";
-    version = "0-unstable-2025-06-01";
+    version = "0-unstable-2025-11-12";
 
     src = fetchFromGitHub {
       owner = "N00byKing";
       repo = "sm64ex";
-      rev = "0e88a60f94535ef9653e9c66c53d3178d131e5e0";
-      hash = "sha256-YZyekQj1q2idpLJXVcz+4FrD6iaPmPH+hYJsolwt9PI=";
+      rev = "fe187c151aa608361d30d1819edca131c0043cf9";
+      hash = "sha256-aO/d2iRUkK7ZlDt76ivnbM+SFPNy69y+LbsMMHQ1O2k=";
 
       leaveDotGit = true;
       deepClone = true;
@@ -109,15 +109,23 @@ in
       ln -s ${baseRom} ./baserom.${region}.z64
     '';
 
-    installPhase = ''
-      runHook preInstall
+    installPhase =
+      ''
+        runHook preInstall
 
-      mkdir -p $out/bin
-      cp build/${region}_pc/sm64.${region}.f3dex2e $out/bin/sm64ex-ap
-      cp build/${region}_pc/libAPCpp.so $out/bin/libAPCpp.so
-
-      runHook postInstall
-    '';
+        mkdir -p $out/bin
+        cp build/${region}_pc/sm64.${region}.f3dex2e $out/bin/sm64ex-ap
+        cp build/${region}_pc/libAPCpp.so $out/bin/libAPCpp.so
+      ''
+      + lib.optionalString gcc15Stdenv.hostPlatform.isDarwin ''
+        cp lib/discord/libdiscord-rpc.dylib $out/bin/libdiscord-rpc.dylib
+      ''
+      + lib.optionalString gcc15Stdenv.hostPlatform.isLinux ''
+        cp lib/discord/libdiscord-rpc.so $out/bin/libdiscord-rpc.so
+      ''
+      + ''
+        runHook postInstall
+      '';
 
     meta = {
       homepage = "https://github.com/N00byKing/sm64ex";
