@@ -1,5 +1,5 @@
 {
-  description = "Because what's just one more flake, right?";
+  description = "Because what's yet another flake input, right?";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
