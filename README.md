@@ -1,8 +1,8 @@
-# Just One More Repo
+# Yet Another Flake Input
 
-[![Build](https://github.com/ProverbialPennance/just-one-more-repo/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/ProverbialPennance/just-one-more-repo/actions/workflows/build.yml?branch=main)
-[![Format](https://github.com/ProverbialPennance/just-one-more-repo/actions/workflows/format.yml/badge.svg?branch=main)](https://github.com/ProverbialPennance/just-one-more-repo/actions/workflows/format.yml?branch=main)
-[![Checks](https://github.com/ProverbialPennance/just-one-more-repo/actions/workflows/nixos-modules.yml/badge.svg?branch=main)](https://github.com/ProverbialPennance/just-one-more-repo/actions/workflows/nixos-modules.yml?branch=main)
+[![Build](https://github.com/yafi-moment/yet-another-flake-input/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/yafi-moment/yet-another-flake-input/actions/workflows/build.yml?branch=main)
+[![Format](https://github.com/yafi-moment/yet-another-flake-input/actions/workflows/format.yml/badge.svg?branch=main)](https://github.com/yafi-moment/yet-another-flake-input/actions/workflows/format.yml?branch=main)
+[![Checks](https://github.com/yafi-moment/yet-another-flake-input/actions/workflows/nixos-modules.yml/badge.svg?branch=main)](https://github.com/yafi-moment/yet-another-flake-input/actions/workflows/nixos-modules.yml?branch=main)
 
 because _what's the harm in one more flake input?_
 
@@ -20,8 +20,8 @@ Just add it to your flake.nix as usual:
     # NOTE: replace nixos-25.05 with the desired version, such as nixos-unstable
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
-    just-one-more-repo = {
-        url = "github:ProverbialPennance/just-one-more-repo";
+    yet-another-flake-input = {
+        url = "github:yafi-moment/yet-another-flake-input";
         inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -29,7 +29,7 @@ Just add it to your flake.nix as usual:
   outputs = {
     self,
     nixpkgs,
-    just-one-more-repo,
+    yet-another-flake-input,
   }:
   {
     nixosConfigurations = {
@@ -37,7 +37,7 @@ Just add it to your flake.nix as usual:
         modules = [
           ./configuration.nix
           # this adds the overlay introducing new packages and swapping ones such as sm64coopdx
-          just-one-more-repo.nixosModules.default
+          yet-another-flake-input.nixosModules.default
         ];
       };
     };
@@ -61,6 +61,8 @@ or you can use our modules like so:
 ```
 
 ## cachix
+
+## THIS REPO DOES PROVIDE A CACHE
 
 The cachix instance should be regularly updated, the following should be enough to start using it
 
